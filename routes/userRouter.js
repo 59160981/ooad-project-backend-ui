@@ -15,7 +15,18 @@ userRouter.route('/users').get(function (req, res) {
   });
 });
 
-userRouter.route('/users').post(function (req, res) {
+userRouter.route('/create').get(function (req, res) {
+  User.find(function (err, users) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.render('addUsers',{login : userLogin, err:false}); //render collection "users"
+    }
+  });
+});
+
+userRouter.route('/create').post(function (req, res) {
   const DataUser = new User(req.body);
   const username = req.body.username;
   User.findOne({ username: username}, function(err, userInServer) {
@@ -26,7 +37,7 @@ userRouter.route('/users').post(function (req, res) {
       }
       else {
         console.log('have user in server')
-        res.render('users',{login : userLogin, err:true , users: users }); //render collection "users"
+        res.render('addUsers',{login : userLogin, err:true }); //render collection "users"
       }
     });
   } else {
@@ -83,12 +94,13 @@ userRouter.route("/login").post(function(req, res) {
   const password = req.body.password;
   
   User.findOne({ username: username, password: password }, function(err, user) {
+    console.log(user)
     if (err) {
       res.status(400).send("No have user");
       res.render("login",{err:true});
     } else {
       if (user) {
-        userLogin = username
+        userLogin = user.firstName + " " + user.lastName
         res.redirect('/home/users');
       } else {
         res.render("login",{err:true});
