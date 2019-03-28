@@ -12,7 +12,6 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 //router req
 const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');

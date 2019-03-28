@@ -216,10 +216,9 @@
                                                 <input  name="buildID" class="input" type="text" placeholder=""
                                                     style="width:50%" > <span id="txtBuildID" style="color: red"></span>
                                             </p>
-
                                             <p class="control">
                                                 <input name="Room" class="input" type="text" placeholder=""
-                                                    style="width:50%" > <span id="txtRoom" style="color: red"></span>
+                                                    style="width:50%" > <span name="txtRoom" style="color: red"></span>
                                             </p>
 
                                             <div class="select"> 
@@ -229,21 +228,21 @@
                                                         <option value="ห้องเรียนใหญ่">ห้องเรียนใหญ่</option>
                                                         <option value="ห้องแลป">ห้องแลป</option>
                                                     </select>
-                                                </div> <span id="txtType" style="color: red"></span>
+                                                </div> <span name="txtType" style="color: red"></span>
 
                                             <p class="control" style="margin-top: 2.2vh">
                                                 <input name="maxStudent" class="input" type="text" placeholder=""
-                                                    style="width:50%" > <span id="txtMaxStudent" style="color: red"></span>
+                                                    style="width:50%" > <span name="txtMaxStudent" style="color: red"></span>
                                             </p> 
                                             <p class="control" style="margin-top: 2.2vh">
                                                     <input name="status" class="input" type="text" placeholder=""
-                                                        style="width:50%" value="ว่าง" readonly> <span id="txtMaxStudent" style="color: red"></span>
+                                                        style="width:50%" value="ว่าง" readonly> <span style="color: gray">* ไม่สามารถแก้ไขได้</span>
                                                 </p>
-                                            <a href="/home/build/createAddMoreRoom">เพิ่มห้อง</a>
+                                            <a href="/home/build/createAddMoreRoom">เพิ่มห้อง</a><% if(addRoom>0){ %> <a href="/home/build/createAddMoreRoomx">ลบห้อง</a><% } %>
                                             
                                             
                                                                                       
-                                            <span id="alertUser" style="color: red"><% if(err){ %>ไม่สามารถเพิ่มผู้ใช้ได้เนื่องจาก username ซ้ำ<% } %></span>
+                                            <span id="alertUser" style="color: red"><% if(err){ %>ไม่สามารถเพิ่มผู้ใช้ได้เนื่องจาก รหัสตึก ซ้ำ<% } %></span>
                                             
                                             
                                         
@@ -285,7 +284,7 @@
     
                                                 <p class="control" style="margin-top: 4vh;">
                                                     <input name="Room" class="input" type="text" placeholder=""
-                                                        style="width:50%" > <span id="txtRoom" style="color: red"></span>
+                                                        style="width:50%" > <span name="txtRoom" style="color: red"></span>
                                                 </p>
     
                                                 <div class="select"> 
@@ -295,16 +294,16 @@
                                                             <option value="ห้องเรียนใหญ่">ห้องเรียนใหญ่</option>
                                                             <option value="ห้องแลป">ห้องแลป</option>
                                                         </select>
-                                                    </div> <span id="txtType" style="color: red"></span>
+                                                    </div> <span name="txtType" style="color: red"></span>
     
                                                 <p class="control" style="margin-top: 2.2vh">
                                                     <input name="maxStudent" class="input" type="text" placeholder=""
-                                                        style="width:50%" > <span id="txtMaxStudent" style="color: red"></span>
+                                                        style="width:50%" > <span name="txtMaxStudent" style="color: red"></span>
                                                 </p> 
                                                 
                                                 <p class="control" style="margin-top: 2.2vh">
                                                         <input name="status" class="input" type="text" placeholder=""
-                                                            style="width:50%" value="ว่าง" readonly> <span id="txtMaxStudent" style="color: red"></span>
+                                                            style="width:50%" value="ว่าง" readonly> <span style="color: gray">* ไม่สามารถแก้ไขได้</span>
                                                     </p>
                                                 
                                                                                           
@@ -321,7 +320,7 @@
                             <!-- add room -->
 
                             <p>
-                                    <button  type="submit" class="button is-success"
+                                    <button  type="button" onclick="checkValue()" class="button is-success"
                                         style="margin-top: 1.5vw; margin-left: 150vh; color: white;">เพิ่มตึก</button>
                                 </p>
                             </form>
@@ -385,7 +384,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
-    <script src="/js/myScript/checkAddUser.js"></script>
+    <script src="/js/myScript/checkAddBuild.js"></script>
 
     <!-- Page level plugins -->
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
