@@ -95,7 +95,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/home/build">
           <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
           <img src="/img/icon6.png"  width="15" height="15" class="logo" alt=""> 
           <span>จัดการตึก</span></a>
@@ -188,7 +188,7 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">รายชื่อผู้ใช้</h6> 
-                <button class="button is-success" style="margin-left: 135vh; color: white;" onclick="location.href='/home/create'">เพิ่มผู้ใช้</button>
+                <button class="button is-success" style="margin-left: 145vh; color: white;" onclick="location.href='/home/users/create'">เพิ่มผู้ใช้</button>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -218,8 +218,8 @@
                           <td style="text-align: center;"><%= users[i].password %></td>
                           <td style="text-align: center;"><%= users[i].firstName %>   <%= users[i].lastName %></td>
                           <td style="text-align: center;"><%= users[i].type %></td>
-                          <td style="text-align: center;"><a href="/home/edit/<%= users[i]._id %>" class="btn btn-primary">Edit</a>
-                          <a href="/home/delete/<%= users[i]._id %>" class="btn btn-danger">Delete</a></td>
+                          <td style="text-align: center;"><a href="/home/users/edit/<%= users[i]._id %>" class="btn btn-primary">Edit</a>
+                          <a href="/home/users/delete/<%= users[i]._id %>" class="btn btn-danger">Delete</a></td>
                         </tr>
                         <% } %>
                     </tbody>
@@ -239,7 +239,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Object-Oriented Analysis and Design &copy;</span>
+            <span>Copyright &copy; 2562 Object-Oriented Analysis and Design.</span>
           </div>
         </div>
       </footer>

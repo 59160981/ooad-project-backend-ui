@@ -2,9 +2,8 @@ const express = require('express');
 const app = express();
 const userRouter = express.Router();
 const User = require('../models/user');
-var userLogin = "";
 
-userRouter.route('/users').get(function (req, res) {
+userRouter.route('/').get(function (req, res) {
   User.find(function (err, users) {
     if (err) {
       console.log(err);
@@ -55,7 +54,7 @@ userRouter.route('/edit/:id').get(function (req, res) {
   });
 });
 
-userRouter.route('/update/:id').post(function (req, res) {
+userRouter.route('/edit/:id').post(function (req, res) {
   User.findById(req.params.id, function (err, user) {
     if (!user)
       return next(new Error('Could not load Document'));
@@ -84,30 +83,5 @@ userRouter.route('/delete/:id').get(function (req, res) {
       else res.redirect('/home/users');
     });
 });
-
-userRouter.route('/').get(function (req, res) {
-  res.render('login',{err:false});
-});
-
-userRouter.route("/login").post(function(req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
-  
-  User.findOne({ username: username, password: password }, function(err, user) {
-    console.log(user)
-    if (err) {
-      res.status(400).send("No have user");
-      res.render("login",{err:true});
-    } else {
-      if (user) {
-        userLogin = user.firstName + " " + user.lastName
-        res.redirect('/home/users');
-      } else {
-        res.render("login",{err:true});
-      }
-    }
-  });
-});
-
 
 module.exports = userRouter;
