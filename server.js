@@ -12,19 +12,22 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 //router req
 const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 const buildRouter  = require('./routes/buildRouter')
+const roomRouter  = require('./routes/roomRouter')
 //router
 app.use('/home', loginRouter);
 app.use('/home/users', userRouter);
 app.use('/home/build', buildRouter)
+app.use('/home/room', roomRouter)
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'public', 'index.html'));
 });
 
 app.listen(port, function(){
-  console.log('start port http://localhost:'+port);
+  console.log('start port http://localhost:'+port+"/home");
 });

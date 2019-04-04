@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const userRouter = express.Router();
 const User = require('../models/user');
-
+var userLogin = ""
 userRouter.route('/').get(function (req, res) {
   User.find(function (err, users) {
     if (err) {

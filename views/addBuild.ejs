@@ -9,9 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-    
 
-    <title>จัดการผู้ใช้</title>
+
+    <title>เพิ่มตึก</title>
 
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -98,17 +98,27 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/build" style="background-color: rgb(153, 153, 150)">
+                <a class="nav-link" href="/home/room" >
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
-                    <span>จัดการตึก</span></a>
+                    <span>เพิ่มห้อง</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/users" >
+                <a class="nav-link" href="/home/build" style="background-color: rgb(153, 153, 150)">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
+                    <span>เพิ่มตึก</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/home/users">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon7.png" width="15" height="15" class="logo" alt="">
                     <span>จัดการผู้ใช้</span></a>
@@ -189,140 +199,31 @@
                                     <p style="margin-top: 0.15vw;">
                                         <label class="label">รหัสตึก :</label>
                                     </p>
-                                    <!-- room -->
-                                    <p style="margin-top: 2vw;">
-                                        <label class="label">ห้อง :</label>
-                                    </p>
-
-                                    <P style="margin-top: 2vw;">
-                                            <label class="label">ชนิด :</label>
-                                        </P>
-
-                                    <P style="margin-top: 2vw;">
-                                        <label class="label">ความจุห้อง(คน) :</label>
-                                    </P>
-                                    <P style="margin-top: 2vw;">
-                                            <label class="label">สถานะ :</label>
-                                        </P>
                                     
 
-          
+
+
                                 </div>
 
                                 <div class="field-body">
                                     <div class="field">
                                         <form id="addBuild" method="POST" action="/home/build/create">
                                             <p class="control">
-                                                <input  name="buildID" class="input" type="text" placeholder=""
-                                                    style="width:50%" > <span id="txtBuildID" style="color: red"></span>
+                                                <input name="buildID" class="input" type="text" placeholder=""
+                                                    style="width:50%"> <span id="txtBuildID" style="color: red"></span>
                                             </p>
-                                            <p class="control">
-                                                <input name="Room" class="input" type="text" placeholder=""
-                                                    style="width:50%" > <span name="txtRoom" style="color: red"></span>
-                                            </p>
-
-                                            <div class="select"> 
-                                                    <select name="type"> 
-                                                        <option value="" hidden>เลือก....</option>
-                                                        <option value="ห้องเรียนปกติ">ห้องเรียนปกติ</option>
-                                                        <option value="ห้องเรียนใหญ่">ห้องเรียนใหญ่</option>
-                                                        <option value="ห้องแลป">ห้องแลป</option>
-                                                    </select>
-                                                </div> <span name="txtType" style="color: red"></span>
-
-                                            <p class="control" style="margin-top: 2.2vh">
-                                                <input name="maxStudent" class="input" type="text" placeholder=""
-                                                    style="width:50%" > <span name="txtMaxStudent" style="color: red"></span>
-                                            </p> 
-                                            <p class="control" style="margin-top: 2.2vh">
-                                                    <input name="status" class="input" type="text" placeholder=""
-                                                        style="width:50%" value="ว่าง" readonly> <span style="color: gray">* ไม่สามารถแก้ไขได้</span>
-                                                </p>
-                                            <a href="/home/build/createAddMoreRoom">เพิ่มห้อง</a><% if(addRoom>0){ %> <a href="/home/build/createAddMoreRoomx">ลบห้อง</a><% } %>
-                                            
-                                            
-                                                                                      
-                                            <span id="alertUser" style="color: red"><% if(err){ %>ไม่สามารถเพิ่มผู้ใช้ได้เนื่องจาก รหัสตึก ซ้ำ<% } %></span>
-                                            
-                                            
-                                        
-                                        
+                                            <% if(err) { %> <span style="color: red">* ไม่สามารถเพิ่มตึกได้ เนื่องจากรหัสตึกซ้ำ</span> <% } %>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <hr>
-                            <!-- add room -->
-                            <% for(var i=0; i < addRoom ; i++) { %>
-                            <div class="field is-horizontal">
-                                    <div class="field-label is-normal">
-                                        <!-- room -->
-                                        <p style="margin-top: 2vw;">
-                                            <label class="label">ห้อง :</label>
-                                        </p>
-    
-                                        <P style="margin-top: 2vw;">
-                                                <label class="label">ชนิด :</label>
-                                            </P>
-    
-                                        <P style="margin-top: 2vw;">
-                                            <label class="label">ความจุห้อง(คน) :</label>
-                                        </P>
-                                        
-                                        <P style="margin-top: 2vw;">
-                                                <label class="label">สถานะ :</label>
-                                            </P>
-                                        
-    
-              
-                                    </div>
-    
-                                    <div class="field-body">
-                                        <div class="field">
-                                            
 
-    
-                                                <p class="control" style="margin-top: 4vh;">
-                                                    <input name="Room" class="input" type="text" placeholder=""
-                                                        style="width:50%" > <span name="txtRoom" style="color: red"></span>
-                                                </p>
-    
-                                                <div class="select"> 
-                                                        <select name="type"> 
-                                                            <option value="" hidden>เลือก....</option>
-                                                            <option value="ห้องเรียนปกติ">ห้องเรียนปกติ</option>
-                                                            <option value="ห้องเรียนใหญ่">ห้องเรียนใหญ่</option>
-                                                            <option value="ห้องแลป">ห้องแลป</option>
-                                                        </select>
-                                                    </div> <span name="txtType" style="color: red"></span>
-    
-                                                <p class="control" style="margin-top: 2.2vh">
-                                                    <input name="maxStudent" class="input" type="text" placeholder=""
-                                                        style="width:50%" > <span name="txtMaxStudent" style="color: red"></span>
-                                                </p> 
-                                                
-                                                <p class="control" style="margin-top: 2.2vh">
-                                                        <input name="status" class="input" type="text" placeholder=""
-                                                            style="width:50%" value="ว่าง" readonly> <span style="color: gray">* ไม่สามารถแก้ไขได้</span>
-                                                    </p>
-                                                
-                                                                                          
-                                                <span id="alertUser" style="color: red"><% if(err){ %>ไม่สามารถเพิ่มผู้ใช้ได้เนื่องจาก username ซ้ำ<% } %></span>
-                                                
-                                                
-                                            
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <% } %>
-                            <!-- add room -->
+                            <hr>
+                            
 
                             <p>
-                                    <button  type="button" onclick="checkValue()" class="button is-success"
-                                        style="margin-top: 1.5vw; margin-left: 150vh; color: white;">เพิ่มตึก</button>
-                                </p>
+                                <button type="button" onclick="checkValue()" class="button is-success"
+                                    style="margin-top: 1.5vw; margin-left: 60%; color: white;">เพิ่มตึก</button>
+                            </p>
                             </form>
                         </div>
                     </div>
@@ -374,7 +275,7 @@
         </div>
     </div>
 
-    
+
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

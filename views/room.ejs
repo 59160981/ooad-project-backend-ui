@@ -96,7 +96,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-          <a class="nav-link" href="/home/room" >
+          <a class="nav-link" href="/home/room" style="background-color: rgb(153, 153, 150)">
               <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
               <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
               <span>เพิ่มห้อง</span></a>
@@ -105,7 +105,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="/home/build" style="background-color: rgb(153, 153, 150)">
+        <a class="nav-link" href="/home/build" >
           <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
           <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
           <span>เพิ่มตึก</span></a>
@@ -195,11 +195,11 @@
           </div>
         </div>
         <!-- test table -->
-        <div class="card shadow mb-4" style="width: 70%; margin-left: 15%">
+        <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">รายการตึก</h6>
+            <h6 class="m-0 font-weight-bold text-primary">รายการห้อง</h6>
             <button class="button is-success" style="margin-left: 70%; color: white;"
-              onclick="location.href='/home/build/create'">เพิ่มตึก</button>
+              onclick="location.href='/home/room/create'">เพิ่มห้อง</button>
 
           </div>
           <div class="card-body">
@@ -208,22 +208,36 @@
                 <thead>
                   <tr>
                     <th style="text-align: center;">รหัสตึก</th>
+                    <th style="text-align: center;">รหัสห้อง</th>
+                    <th style="text-align: center;">ชนิดห้อง</th>
+                    <th style="text-align: center;">ความจุห้อง(คน)</th>
+                    <th style="text-align: center;">สถานะ</th>
                     <th style="text-align: center;">หมายเหตุ</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
                     <th style="text-align: center;">รหัสตึก</th>
+                    <th style="text-align: center;">รหัสห้อง</th>
+                    <th style="text-align: center;">ชนิดห้อง</th>
+                    <th style="text-align: center;">ความจุห้อง(คน)</th>
+                    <th style="text-align: center;">สถานะ</th>
                     <th style="text-align: center;">หมายเหตุ</th>
                   </tr>
                 </tfoot>
                 <tbody>
-                  <% for(var i=0; i < build.length; i++) { %>
+                  <% for(var i=0; i < room.length; i++) { %>
+                    <% for(var j=0; j < room[i].roomID.length; j++) { %>
                   <tr>
-                    <td style="text-align: center;"><%= build[i].buildID %></td>
-                    <td style="text-align: center;"><a href="/home/build/edit/<%= build[i]._id %>" class="btn btn-primary">Edit</a>
-                      <a href="/home/build/delete/<%= build[i]._id %>" class="btn btn-danger">Delete</a></td>
+                    <td style="text-align: center;"><%= room[i].buildID %></td>
+                    <td style="text-align: center;"><%= room[i].roomID[j] %></td>
+                    <td style="text-align: center;"><%= room[i].type[j] %></td>
+                    <td style="text-align: center;"><%= room[i].maxStudent[j] %></td>
+                    <td style="text-align: center;"><%= room[i].status[j] %></td>
+                    <td style="text-align: center;"><a href="/home/room/edit/<%= room[i]._id %>" class="btn btn-primary">Edit</a>
+                        <a href="/home/room/delete/<%= room[i].roomID[j] %>" class="btn btn-danger">Delete</a></td>
                   </tr>
+                   <% } %>
                   <% } %>
                 </tbody>
               </table>
