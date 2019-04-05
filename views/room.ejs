@@ -235,7 +235,7 @@
                     <td style="text-align: center;"><%= room[i].maxStudent[j] %></td>
                     <td style="text-align: center;"><%= room[i].status[j] %></td>
                     <td style="text-align: center;"><a href="/home/room/edit/<%= room[i]._id %>" class="btn btn-primary">Edit</a>
-                        <a href="/home/room/delete/<%= room[i].roomID[j] %>" class="btn btn-danger">Delete</a></td>
+                        <a href="/home/room/delete/<%= room[i]._id %>/<%= room[i].roomID[j] %>" class="btn btn-danger">Delete</a></td>
                   </tr>
                    <% } %>
                   <% } %>
