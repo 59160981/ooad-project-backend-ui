@@ -2,35 +2,40 @@ const express = require('express');
 const app = express();
 const Router = express.Router();
 const Build = require('../models/build');
-var userLogin = ""
+
 Router.route('/').get(function (req, res) {
-    Build.find(function (err, build) {
-        res.render('build', { login: userLogin, build: build });
-    });
+    try {
+        Build.find(function (err, build) {
+            res.render('build', { login: userLoginDetails, build: build });
+        });
+    } catch (error) {
+        res.redirect('/home')
+    }
+
 });
 
 // var addRoom = 0;
 Router.route('/create').get(function (req, res) {
     addRoom = 0;
-    res.render('addBuild', { login: userLogin, err: false, addRoom: addRoom });
+    res.render('addBuild', { login: userLoginDetails, err: false, addRoom: addRoom });
 });
 
 // Router.route('/createAddMoreRoom').get(function (req, res) {
 //     addRoom++;
-//     res.render('addBuild', { login: userLogin, err: false, addRoom: addRoom });
+//     res.render('addBuild', { login: userLoginDetails, err: false, addRoom: addRoom });
 // });
 
 // Router.route('/createAddMoreRoomx').get(function (req, res) {
 //     if (addRoom > 0) {
 //         addRoom--;
-//         res.render('addBuild', { login: userLogin, err: false, addRoom: addRoom });
+//         res.render('addBuild', { login: userLoginDetails, err: false, addRoom: addRoom });
 //     }
 // });
 
 Router.route('/create').post(function (req, res) {
     const buildID = req.body.buildID;
     const DataUser = new Build(req.body);
-    
+
     Build.findOne({ buildID: buildID }, function (err, buildInServer) {
         if (buildInServer) {
             Build.find(function (err, build) {
@@ -39,7 +44,7 @@ Router.route('/create').post(function (req, res) {
                 }
                 else {
                     console.log('have user in server')
-                    res.render('addBuild', { login: userLogin, err: true });
+                    res.render('addBuild', { login: userLoginDetails, err: true });
                 }
             });
         } else {
@@ -62,7 +67,7 @@ Router.route('/delete/:id').get(function (req, res) {
 Router.route('/edit/:id').get(function (req, res) {
     const id = req.params.id;
     Build.findById(id, function (err, build) {
-        res.render('editBuild', { login: userLogin, build: build });
+        res.render('editBuild', { login: userLoginDetails, build: build });
     });
 });
 Router.route('/edit/:id').post(function (req, res) {
@@ -82,4 +87,6 @@ Router.route('/edit/:id').post(function (req, res) {
         }
     });
 });
+
+
 module.exports = Router;

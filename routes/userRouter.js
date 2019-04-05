@@ -2,16 +2,11 @@ const express = require('express');
 const app = express();
 const userRouter = express.Router();
 const User = require('../models/user');
-var userLogin = ""
+
 userRouter.route('/').get(function (req, res) {
-  User.find(function (err, users) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.render('users',{login : userLogin, err:false , users: users }); //render collection "users"
-    }
-  });
+    User.find(function (err, users) {
+      res.render('users', { login: userLoginDetails, users: users });
+    });
 });
 
 userRouter.route('/create').get(function (req, res) {
@@ -20,7 +15,7 @@ userRouter.route('/create').get(function (req, res) {
       console.log(err);
     }
     else {
-      res.render('addUsers',{login : userLogin, err:false}); //render collection "users"
+      res.render('addUsers', { login: userLoginDetails, err: false }); //render collection "users"
     }
   });
 });
@@ -28,29 +23,29 @@ userRouter.route('/create').get(function (req, res) {
 userRouter.route('/create').post(function (req, res) {
   const DataUser = new User(req.body);
   const username = req.body.username;
-  User.findOne({ username: username}, function(err, userInServer) {
-  if (userInServer) {
-    User.find(function (err, users) {
-      if (err) {
-        console.log(err);
-      }
-      else {
-        console.log('have user in server')
-        res.render('addUsers',{login : userLogin, err:true }); //render collection "users"
-      }
-    });
-  } else {
-    console.log(DataUser);
-    DataUser.save()
-    res.redirect('/home/users');
-  }
+  User.findOne({ username: username }, function (err, userInServer) {
+    if (userInServer) {
+      User.find(function (err, users) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          console.log('have user in server')
+          res.render('addUsers', { login: userLoginDetails, err: true }); //render collection "users"
+        }
+      });
+    } else {
+      console.log(DataUser);
+      DataUser.save()
+      res.redirect('/home/users');
+    }
   });
 });
 
 userRouter.route('/edit/:id').get(function (req, res) {
   const id = req.params.id;
   User.findById(id, function (err, user) {
-    res.render('edit', {login : userLogin, user: user });
+    res.render('edit', { login: userLoginDetails, user: user });
   });
 });
 
@@ -77,7 +72,7 @@ userRouter.route('/edit/:id').post(function (req, res) {
 });
 
 userRouter.route('/delete/:id').get(function (req, res) {
-  User.findByIdAndRemove({ _id: req.params.id},
+  User.findByIdAndRemove({ _id: req.params.id },
     function (err, coin) {
       if (err) res.json(err);
       else res.redirect('/home/users');

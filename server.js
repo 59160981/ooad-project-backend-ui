@@ -25,7 +25,7 @@ app.use('/home/build', buildRouter)
 app.use('/home/room', roomRouter)
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname,'public', 'index.html'));
+  res.sendFile(path.join(__dirname,'public', '/home/index'));
 });
 
 app.listen(port, function(){

@@ -3,7 +3,6 @@ const app = express();
 const userRouter = express.Router();
 const User = require('../models/user');
 
-
 userRouter.route('/').get(function (req, res) {
   res.render('login',{err:false});
 });
@@ -18,8 +17,8 @@ userRouter.route("/login").post(function(req, res) {
       res.render("login",{err:true});
     } else {
       if (user) {
-        userLogin = user.firstName + "  " + user.lastName
-        res.redirect('/home/users');
+        userLogin = username
+        res.redirect('/home/index')
       } else {
         res.render("login",{err:true});
       }
@@ -27,5 +26,20 @@ userRouter.route("/login").post(function(req, res) {
   });
 });
 
-
+userRouter.route('/index').get(function (req, res) {
+  try {
+    User.findOne({username:userLogin},function (err, users) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        userLoginDetails = users.firstName+" "+users.lastName
+        res.render('index',{login : userLoginDetails,  users: users }); //render collection "users"
+      }
+    });
+  } catch (error) {
+    res.redirect('/home')
+  }
+  
+});
 module.exports = userRouter;

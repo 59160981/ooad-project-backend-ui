@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,14 +11,13 @@
   <meta name="author" content="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 
-  <title>แก้ไขข้อมูลผู้ใช้</title>
+  <title>เพิ่มตึก</title>
 
   <!-- Custom fonts for this template -->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
 
   <!-- Custom styles for this template -->
   <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -97,7 +97,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-          <a class="nav-link" href="/home/room">
+          <a class="nav-link" href="/home/room" >
               <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
               <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
               <span>เพิ่มห้อง</span></a>
@@ -106,7 +106,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="/home/build">
+        <a class="nav-link" href="/home/build" >
           <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
           <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
           <span>เพิ่มตึก</span></a>
@@ -116,7 +116,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="/home/users" style="background-color: rgb(153, 153, 150)">
+        <a class="nav-link" href="/home/users">
           <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
           <img src="/img/icon7.png" width="15" height="15" class="logo" alt="">
           <span>จัดการผู้ใช้</span></a>
@@ -171,7 +171,7 @@
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div class="dropdown-item"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   ออกจากระบบ
                 </a>
@@ -185,93 +185,45 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- DataTales Example -->
-          <div class="">
-            <div class="">
-
-              <!-- </div> -->
-              <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                  <p style="margin-top: 0.5vw;">
-                    <label class="label">Username :</label>
-                  </p>
-                  <p style="margin-top: 2vw;">
-                    <label class="label">Password :</label>
-                  </p>
-                  <P style="margin-top: 2vw;">
-                    <label class="label">ชื่อ :</label>
-                  </P>
-                  <P style="margin-top: 2vw;">
-                    <label class="label">นามสกุล :</label>
-                  </P>
-                  <P style="margin-top: 2vw;">
-                    <label class="label">สถานะ :</label>
-                  </P>
-                </div>
-
-                <div class="field-body">
-                  <div class="field">
-                    <form id="editUser" method="POST" action="/home/users/edit/<%= user._id %>">
-                      <p class="control">
-                        <input name="username" class="input" type="text" placeholder=""
-                            style="width:50%" value="<%= user.username %>" readonly> <span style="color: gray">* ห้ามแก้ไขข้อมูล username</span>
-                    </p>
-
-                    <p class="control">
-                        <input name="password" class="input" type="text" placeholder=""
-                            style="width:50%" value="<%= user.password %>"> <span id="txtPassword" style="color: red"></span>
-                    </p>
-
-                    <p class="control">
-                        <input name="firstName" class="input" type="text" placeholder=""
-                            style="width:50%" value="<%= user.firstName %>"> <span id="txtFirstName" style="color: red"></span>
-                    </p>
-
-                    <p class="control">
-                        <input name="lastName" class="input" type="text" placeholder=""
-                            style="width:50%" value="<%= user.lastName %>"> <span id="txtLastName" style="color: red"></span>
-                    </p>
-
-                    <div class="select"> 
-                        <select name="type"> 
-                            <option value="<%= user.type %>" hidden><%= user.type %></option>
-                            <option value="นิสิต">นิสิต</option>
-                            <option value="อาจารย์">อาจารย์</option>
-                            <option value="เจ้าหน้าที่">เจ้าหน้าที่</option>
-                        </select>
-                    </div> <span id="txtType" style="color: red"></span>
-                    
-                    <p>
-                        <button type="button" onclick="checkValue()" class="button is-success"
-                            style="margin-top: 1.5vw; margin-left: 26.5vw; color: white;">แก้ไขข้อมูล</button>
-                    </p>
-                    </form>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2562 Object-Oriented Analysis and Design.</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+            <!-- Approach -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">ข้อมูลผู้ใช้</h6>
     </div>
-    <!-- End of Content Wrapper -->
+    <div class="card-body">
+        <p style="margin-top: 0.5vw;">
+            <label class="label">Username :</label>
+            <input class="input" type="text" placeholder="" style="width:20%" value="<%= users.username %>" readonly>
+          </p>
+          <P style="margin-top: 2vw;">
+            <label class="label">ชื่อ - นามสกุล :</label>
+            <input class="input" type="text" placeholder="" style="width:20%" value="<%= users.firstName %>  <%= users.lastName %>" readonly>
+          </P>
+
+          <P style="margin-top: 2vw;">
+            <label class="label">สถานะ :</label>
+            <input class="input" type="text" placeholder="" style="width:20%" value="<%= users.type %>" readonly>
+          </P>
+          
+      
+    </div>
+  </div>
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; 2562 Object-Oriented Analysis and Design.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -310,7 +262,6 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/js/sb-admin-2.min.js"></script>
-  <script src="/js/myScript/checkEditUser.js"></script>
 
   <!-- Page level plugins -->
   <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
