@@ -1,4 +1,8 @@
 function checkValue() {
+    var x = document.getElementById("txtAlertAddRoom").innerHTML;
+    if(x != ""){
+        document.getElementById("txtAlertAddRoom").innerHTML= "";
+    }
     var buildID = document.getElementsByName("buildID")[0].value;
     var size = document.getElementsByName("roomID").length;
     var correct = 0;
@@ -10,6 +14,7 @@ function checkValue() {
     }
     var arr = [];
     for (var i = 0; i < size; i++) {
+        document.getElementsByName("roomID")[i].style.borderColor = "#DFDFDF";
         var roomID = document.getElementsByName("roomID")[i].value;
         arr.push(roomID);
         var type = document.getElementsByName("type")[i].value;
@@ -36,27 +41,17 @@ function checkValue() {
     //check ซ้ำ
     var dup = 0;
     for (var i = 0; i < size; i++) {
-        for (var j = 0; j < size; j++) {
-            if (arr[i] == arr[j] && i != j) {
-                if (arr[i] == "" && arr[j] == "") {
-                    document.getElementsByName("roomID")[i].style.borderColor = "#DFDFDF";
-                    document.getElementsByName("roomID")[j].style.borderColor = "#DFDFDF";
-                    
-                } else {
-                    dup++;
-                    document.getElementsByName("roomID")[i].style.borderColor = "red";
-                    document.getElementsByName("roomID")[j].style.borderColor = "red";
-                }
-                
-            }
-            if (dup == 0 || dup == 1) {
-                document.getElementsByName("roomID")[i].style.borderColor = "#DFDFDF";
-                document.getElementsByName("roomID")[j].style.borderColor = "#DFDFDF";
+        for (var j = i+1; j < size; j++) {
+            if (arr[i] == arr[j] && arr[i] != "" && arr[j] != "") {
+                dup++;
+                document.getElementsByName("roomID")[i].style.borderColor = "red";
+                document.getElementsByName("roomID")[j].style.borderColor = "red";  
             }
         }
     }
+    
     // alert(dup)
-
+    
 
     var pass = (size * 3)+1;
     if (correct == pass && dup == 0) {

@@ -16,50 +16,80 @@ Router.route('/').get(function (req, res) {
 
 var addRoom = 0;
 Router.route('/create').get(function (req, res) {
+    var dup = [];
     addRoom = 0;
     Build.find(function (err, build) {
-        res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom });
+        res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup });
     });
 });
 
 Router.route('/createAddMoreRoom').get(function (req, res) {
+    var dup = [];
     addRoom++;
     Build.find(function (err, build) {
-        res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom });
+        res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup });
     });
 });
 
 Router.route('/createAddMoreRoomx').get(function (req, res) {
+    var dup = [];
     if (addRoom > 0) {
         addRoom--;
         Build.find(function (err, build) {
-            res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom });
+            res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup });
         });
     }
 });
 
 Router.route('/create').post(function (req, res) {
-    var Data = Room(req.body)
+    var dup = [];
     var buildID = req.body.buildID;
+    var roomIDAdd = req.body.roomID;
     Room.findOne({ buildID: buildID }, function (err, room) {
         if (room) {
-
             if (addRoom == 0) {
-                room.roomID.push(req.body.roomID);
-                room.type.push(req.body.type);
-                room.maxStudent.push(parseInt(req.body.maxStudent));
-                room.status.push(req.body.status);
+                for (let i = 0; i < room.roomID.length; i++) {
+                    if (roomIDAdd == room.roomID[i]) {
+                        dup.push(roomIDAdd)
+                    }
+                }
+                if (dup.length > 0) {
+                    console.log(dup)
+                    Build.find(function (err, build) {
+                        res.render('addRoom', { login: userLoginDetails, build: build, err: true, addRoom: addRoom, dup: dup });
+                    });
+                } else {
+                    room.roomID.push(req.body.roomID);
+                    room.type.push(req.body.type);
+                    room.maxStudent.push(parseInt(req.body.maxStudent));
+                    room.status.push(req.body.status);
+                    room.save()
+                    res.redirect('/home/room')
+                }
             } else {
-                for (let i = 0; i <= addRoom; i++) {
-                    room.roomID.push(req.body.roomID[i]);
-                    room.type.push(req.body.type[i]);
-                    room.maxStudent.push(parseInt(req.body.maxStudent[i]));
-                    room.status.push(req.body.status[i]);
+                for (let i = 0; i < roomIDAdd.length; i++) {
+                    for (let j = 0; j < room.roomID.length; j++) {
+                        if (roomIDAdd[i] == room.roomID[j]) {
+                            dup.push(roomIDAdd[i])
+                        }
+                    }
+                }
+                if (dup.length > 0) {
+                    console.log(dup)
+                    Build.find(function (err, build) {
+                        res.render('addRoom', { login: userLoginDetails, build: build, err: true, addRoom: addRoom, dup: dup });
+                    });
+                } else {
+                    for (let i = 0; i <= addRoom; i++) {
+                        room.roomID.push(req.body.roomID[i]);
+                        room.type.push(req.body.type[i]);
+                        room.maxStudent.push(parseInt(req.body.maxStudent[i]));
+                        room.status.push(req.body.status[i]);
+                    }
+                    room.save()
+                    res.redirect('/home/room')
                 }
             }
-            console.log(room)
-            room.save()
-            res.redirect('/home/room')
         } else {
             console.log(Data)
             Data.save()
