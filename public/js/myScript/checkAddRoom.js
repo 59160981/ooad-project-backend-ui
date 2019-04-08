@@ -1,7 +1,34 @@
+function checkRoomID() {
+    var dup = 0;
+    var size = document.getElementsByName("roomID").length;
+    var arr = [];
+    for (var i = 0; i < size; i++) {
+        document.getElementsByName("roomID")[i].style.borderColor = "#DFDFDF";
+        var roomID = document.getElementsByName("roomID")[i].value;
+        arr.push(roomID);
+    }
+
+    for (var i = 0; i < size; i++) {
+        for (var j = i + 1; j < size; j++) {
+            if (arr[i] == arr[j] && arr[i] != "" && arr[j] != "") {
+                dup++;
+                document.getElementsByName("roomID")[i].style.borderColor = "red";
+                document.getElementsByName("roomID")[j].style.borderColor = "red";
+            }
+        }
+    }
+
+    if (dup == 0) {
+        return true;
+    }
+
+}
+
+
 function checkValue() {
     var x = document.getElementById("txtAlertAddRoom").innerHTML;
-    if(x != ""){
-        document.getElementById("txtAlertAddRoom").innerHTML= "";
+    if (x != "") {
+        document.getElementById("txtAlertAddRoom").innerHTML = "";
     }
     var buildID = document.getElementsByName("buildID")[0].value;
     var size = document.getElementsByName("roomID").length;
@@ -38,24 +65,12 @@ function checkValue() {
             correct++;
         }
     }
-    //check ซ้ำ
-    var dup = 0;
-    for (var i = 0; i < size; i++) {
-        for (var j = i+1; j < size; j++) {
-            if (arr[i] == arr[j] && arr[i] != "" && arr[j] != "") {
-                dup++;
-                document.getElementsByName("roomID")[i].style.borderColor = "red";
-                document.getElementsByName("roomID")[j].style.borderColor = "red";  
-            }
-        }
-    }
-    
-    // alert(dup)
-    
 
-    var pass = (size * 3)+1;
-    if (correct == pass && dup == 0) {
-        document.getElementById("addRoom").submit(); 
+
+
+    var pass = (size * 3) + 1;
+    if (correct == pass && checkRoomID()) {
+        document.getElementById("addRoom").submit();
     }
 
 }

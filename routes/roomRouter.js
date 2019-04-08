@@ -3,7 +3,7 @@ const app = express();
 const Router = express.Router();
 const Room = require('../models/room');
 const Build = require('../models/build');
-
+userLoginDetails=""
 Router.route('/').get(function (req, res) {
     try {
         Room.find(function (err, room) {
@@ -45,6 +45,7 @@ Router.route('/create').post(function (req, res) {
     var dup = [];
     var buildID = req.body.buildID;
     var roomIDAdd = req.body.roomID;
+    var Data = Room(req.body)
     Room.findOne({ buildID: buildID }, function (err, room) {
         if (room) {
             if (addRoom == 0) {

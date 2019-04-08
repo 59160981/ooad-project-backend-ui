@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const Router = express.Router();
 const Build = require('../models/build');
-userLoginDetails = ""
+// userLoginDetails = ""
 Router.route('/').get(function (req, res) {
     try {
         Build.find(function (err, build) {
