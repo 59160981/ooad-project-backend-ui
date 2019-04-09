@@ -3,50 +3,55 @@ const app = express();
 const Router = express.Router();
 const Room = require('../models/room');
 const Build = require('../models/build');
-userLoginDetails=""
-Router.route('/').get(function (req, res) {
-    try {
-        Room.find(function (err, room) {
-            res.render('room', { login: userLoginDetails, room: room });
+const Term = require('../models/term');
+userLoginDetails = "";
+Router.route('/').get(function(req, res) {
+    Room.find(function(err, room) {
+        Term.findOne(function(err, term) {
+            res.render('room', { login: userLoginDetails, room: room, term: term });
         });
-    } catch (error) {
-        res.redirect('/home')
-    }
+    });
 });
 
 var addRoom = 0;
-Router.route('/create').get(function (req, res) {
+Router.route('/create').get(function(req, res) {
     var dup = [];
     addRoom = 0;
-    Build.find(function (err, build) {
-        res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup });
+    Build.find(function(err, build) {
+        Term.findOne(function(err, term) {
+            res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup, term: term });
+        });
     });
 });
 
-Router.route('/createAddMoreRoom').get(function (req, res) {
+Router.route('/createAddMoreRoom').get(function(req, res) {
     var dup = [];
     addRoom++;
-    Build.find(function (err, build) {
-        res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup });
+    Build.find(function(err, build) {
+        Term.findOne(function(err, term) {
+            res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup, term: term });
+        });
     });
 });
 
-Router.route('/createAddMoreRoomx').get(function (req, res) {
+Router.route('/createAddMoreRoomx').get(function(req, res) {
     var dup = [];
     if (addRoom > 0) {
         addRoom--;
-        Build.find(function (err, build) {
-            res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup });
+        Build.find(function(err, build) {
+            Term.findOne(function(err, term) {
+                res.render('addRoom', { login: userLoginDetails, build: build, err: false, addRoom: addRoom, dup: dup, term: term });
+            });
         });
     }
 });
 
-Router.route('/create').post(function (req, res) {
+Router.route('/create').post(function(req, res) {
     var dup = [];
     var buildID = req.body.buildID;
     var roomIDAdd = req.body.roomID;
     var Data = Room(req.body)
-    Room.findOne({ buildID: buildID }, function (err, room) {
+    Room.findOne({ buildID: buildID }, function(err, room) {
         if (room) {
             if (addRoom == 0) {
                 for (let i = 0; i < room.roomID.length; i++) {
@@ -56,8 +61,10 @@ Router.route('/create').post(function (req, res) {
                 }
                 if (dup.length > 0) {
                     console.log(dup)
-                    Build.find(function (err, build) {
-                        res.render('addRoom', { login: userLoginDetails, build: build, err: true, addRoom: addRoom, dup: dup });
+                    Build.find(function(err, build) {
+                        Term.findOne(function(err, term) {
+                            res.render('addRoom', { login: userLoginDetails, build: build, err: true, addRoom: addRoom, dup: dup, term: term });
+                        });
                     });
                 } else {
                     room.roomID.push(req.body.roomID);
@@ -77,8 +84,10 @@ Router.route('/create').post(function (req, res) {
                 }
                 if (dup.length > 0) {
                     console.log(dup)
-                    Build.find(function (err, build) {
-                        res.render('addRoom', { login: userLoginDetails, build: build, err: true, addRoom: addRoom, dup: dup });
+                    Build.find(function(err, build) {
+                        Term.findOne(function(err, term) {
+                            res.render('addRoom', { login: userLoginDetails, build: build, err: true, addRoom: addRoom, dup: dup });
+                        });
                     });
                 } else {
                     for (let i = 0; i <= addRoom; i++) {
@@ -99,17 +108,17 @@ Router.route('/create').post(function (req, res) {
     });
 });
 
-Router.route('/delete/:id/:roomID').get(function (req, res) {
+Router.route('/delete/:id/:roomID').get(function(req, res) {
     const id = req.params.id;
     const removeRoomID = req.params.roomID;
     // console.log(removeRoomID)
-    Room.find({ _id: id, roomID: removeRoomID }, function (err, room) {
+    Room.find({ _id: id, roomID: removeRoomID }, function(err, room) {
 
         var size = room[0].roomID.length;
         // console.log(size)
         if (size == 1) {
             Room.findByIdAndRemove({ _id: id },
-                function (err, room) {
+                function(err, room) {
                     res.redirect('/home/room');
                 });
         } else {
@@ -129,18 +138,19 @@ Router.route('/delete/:id/:roomID').get(function (req, res) {
     });
 });
 
-Router.route('/edit/:id').get(function (req, res) {
+Router.route('/edit/:id').get(function(req, res) {
     const id = req.params.id;
-    console.log(id)
-    Room.findById(id, function (err, room) {
-        console.log(room)
-        res.render('editRoom', { login: userLoginDetails, room: room });
+
+    Room.findById(id, function(err, room) {
+        Term.findOne(function(err, term) {
+            res.render('editRoom', { login: userLoginDetails, room: room, term: term });
+        });
     });
 });
 
-Router.route('/edit/:id').post(function (req, res) {
+Router.route('/edit/:id').post(function(req, res) {
     const id = req.params.id;
-    Room.findById(id, function (err, room) {
+    Room.findById(id, function(err, room) {
         room.buildID = req.body.buildID;
         room.roomID = req.body.roomID;
         room.type = req.body.type;

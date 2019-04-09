@@ -10,12 +10,12 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 
-    <title>แก้ไขข้อมูลตึก</title>
+
+    <title>จัดการผู้ใช้</title>
 
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 
     <!-- Custom styles for this template -->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -54,7 +54,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/course">
+                <a class="nav-link" href="/home/course" style="background-color: rgb(153, 153, 150)">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon1.png" width="15" height="15" class="logo" alt="">
                     <span>จัดการคอร์สเรียน</span></a>
@@ -121,7 +121,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/build" style="background-color: rgb(153, 153, 150)">
+                <a class="nav-link" href="/home/build">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
                     <span>เพิ่มตึก</span></a>
@@ -171,8 +171,8 @@
                         <%= term.term %>
                             <!-- Sidebar Toggle (Topbar) -->
                             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                             <!-- Topbar Navbar -->
                             <ul class="navbar-nav ml-auto">
@@ -186,7 +186,7 @@
                                     <!-- Dropdown - User Information -->
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                         <div class="dropdown-item"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> ออกจากระบบ
                                         </a>
                                     </div>
@@ -207,24 +207,50 @@
                             <!-- </div> -->
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <p style="margin-top: 0.5vw;">
-                                        <label class="label">รหัสตึก :</label>
+                                    <p style="margin-top: 0.15vw;">
+                                        <label class="label">รหัสวิชา :</label>
                                     </p>
+
+                                    <p style="margin-top: 2vw;">
+                                        <label class="label">ชื่อภาษาไทย :</label>
+                                    </p>
+
+                                    <P style="margin-top: 2vw;">
+                                        <label class="label">ชื่อภาษาอังกฤษ :</label>
+                                    </P>
+
+                                    <P style="margin-top: 2vw;">
+                                        <label class="label">หน่วยกิต :</label>
+                                    </P>
+
                                 </div>
 
                                 <div class="field-body">
                                     <div class="field">
-                                        <form id="editBuild" method="POST" action="/home/build/edit/<%= build._id %>">
+                                        <form id="addSubject" method="POST" action="/home/subject/create">
                                             <p class="control">
-                                                <input name="buildID" class="input" type="text" placeholder="<%= build.buildID %>" style="width:50%" value="<%= build.buildID %>"><span id="txtbuildID" style="color: red"></span>
+                                                <input name="subject_id" class="input" type="text" placeholder="" style="width:50%" maxlength="8"> <span id="txtsub_id" style="color: red"></span>
                                             </p>
 
+                                            <p class="control">
+                                                <input name="subject_ThName" class="input" type="text" placeholder="" style="width:50%"> <span id="txtsub_THName" style="color: red"></span>
+                                            </p>
+
+                                            <p class="control">
+                                                <input name="subject_EngName" class="input" type="text" placeholder="" style="width:50%"> <span id="txtsub_ENGName" style="color: red"></span>
+                                            </p>
+
+                                            <p class="control">
+                                                <input name="subject_credit" class="input" type="text" placeholder="" style="width:50%"> <span id="txtsub_credit" style="color: red"></span>
+                                            </p>
+
+                                            <span id="alertSubject" style="color: red"><% if(err){ %>* รหัสวิชา ซ้ำในระบบ<% } %></span>
 
                                             <p>
-                                                <button type="button" onclick="checkValue()" class="button is-success" style="margin-top: 1.5vw; margin-left: 26.5vw; color: white;">แก้ไขข้อมูล</button>
+                                                <button type="button" onclick="location.href='/home/subject'" class="button is-success" style="margin-top: 1.5vw; margin-left: 14vw; color: white;">กลับ</button>
+                                                <button type="button" onclick="checkValue()" class="button is-success" style="margin-top: 1.5vw; margin-left: 1vw; color: white;">เพิ่มรายวิชาที่เปิดสอน</button>
                                             </p>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
@@ -265,8 +291,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">ต้องการออกจากระบบใช่หรือไม่?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
                 <div class="modal-body">คลิกปุ่ม "ตกลง" หากต้องการออกจากระบบ</div>
                 <div class="modal-footer">
@@ -277,6 +303,7 @@
         </div>
     </div>
 
+
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -286,7 +313,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
-    <script src="/js/myScript/checkEditBuild.js"></script>
+    <script src="/js/myScript/checkAddSubject.js"></script>
 
     <!-- Page level plugins -->
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>

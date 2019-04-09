@@ -10,12 +10,11 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 
-    <title>แก้ไขข้อมูลตึก</title>
+    <title>จัดการปีการศึกษา</title>
 
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 
     <!-- Custom styles for this template -->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -45,7 +44,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/term">
+                <a class="nav-link" href="/home/term" style="background-color: rgb(153, 153, 150)">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon2.png" width="15" height="15" class="logo" alt="">
                     <span>จัดการปีการศึกษา</span></a>
@@ -121,7 +120,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/build" style="background-color: rgb(153, 153, 150)">
+                <a class="nav-link" href="/home/build">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
                     <span>เพิ่มตึก</span></a>
@@ -180,13 +179,13 @@
                                 <!-- Nav Item - User Information -->
                                 <li class="nav-item dropdown no-arrow">
                                     <a class="nav-link dropdown-toggle" href="/home" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= login %></span>
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                         <img class="img-profile rounded-circle" src="/img/iconuser.png" width="15" height="15" class="logo" alt="">
                                     </a>
                                     <!-- Dropdown - User Information -->
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                         <div class="dropdown-item"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> ออกจากระบบ
                                         </a>
                                     </div>
@@ -199,101 +198,101 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <!-- Approach -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">เลือกปี - เทอมการศึกษา</h6>
+                        </div>
+                        <form action="/home/term" method="post">
+                            <div class="card-body">
+                                <p style="margin-top: 0.5vw;">
+                                    <label>ปีการศึกษา : </label>
+                                    <select name="year" id="">
+                                                <option hidden><%= term.year %></option>
+                                                <option>2562</option>
+                                                <option>2563</option>
+                                                <option>2564</option>
+                                                <option>2565</option>
+                                                <option>2566</option>
+                                                <option>2567</option>
+                                                <option>2568</option>
+                                                <option>2569</option>
+                                                <option>2570</option>
+                                                <option>2571</option>
+                                                <option>2572</option>
+                                            </select>
 
-                    <!-- DataTales Example -->
-                    <div class="">
-                        <div class="">
-
-                            <!-- </div> -->
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <p style="margin-top: 0.5vw;">
-                                        <label class="label">รหัสตึก :</label>
-                                    </p>
-                                </div>
-
-                                <div class="field-body">
-                                    <div class="field">
-                                        <form id="editBuild" method="POST" action="/home/build/edit/<%= build._id %>">
-                                            <p class="control">
-                                                <input name="buildID" class="input" type="text" placeholder="<%= build.buildID %>" style="width:50%" value="<%= build.buildID %>"><span id="txtbuildID" style="color: red"></span>
-                                            </p>
-
-
-                                            <p>
-                                                <button type="button" onclick="checkValue()" class="button is-success" style="margin-top: 1.5vw; margin-left: 26.5vw; color: white;">แก้ไขข้อมูล</button>
-                                            </p>
-                                        </form>
-
-                                    </div>
-                                </div>
+                                    <label>เทอม : </label>
+                                    <select name="term" id="">
+                                            <option hidden><%= term.term %></option>
+                                                <option >1</option>
+                                                <option >2</option>
+                                                <option >3</option>
+                                            </select>
+                                </P>
+                                <button type="submit" class="button is-success" style="color: white;">ยืนยัน</button>
                             </div>
+                    </div>
+                    </form>
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; 2562 Object-Oriented Analysis and Design.</span>
                         </div>
                     </div>
-
-                </div>
-                <!-- /.container-fluid -->
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; 2562 Object-Oriented Analysis and Design.</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ต้องการออกจากระบบใช่หรือไม่?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ต้องการออกจากระบบใช่หรือไม่?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
-                </div>
-                <div class="modal-body">คลิกปุ่ม "ตกลง" หากต้องการออกจากระบบ</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">ยกเลิก</button>
-                    <a class="btn btn-primary" href="/home">ตกลง</a>
+                    </div>
+                    <div class="modal-body">คลิกปุ่ม "ตกลง" หากต้องการออกจากระบบ</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">ยกเลิก</button>
+                        <a class="btn btn-primary" href="/home">ตกลง</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
-    <script src="/js/myScript/checkEditBuild.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="/js/demo/datatables-demo.js"></script>
 
 </body>
 

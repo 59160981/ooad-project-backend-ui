@@ -15,9 +15,7 @@
 
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -43,7 +41,24 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">OOAD</div>
             </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
+            <li class="nav-item">
+                <a class="nav-link" href="/home/term">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <img src="/img/icon2.png" width="15" height="15" class="logo" alt="">
+                    <span>จัดการปีการศึกษา</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/home/course">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <img src="/img/icon1.png" width="15" height="15" class="logo" alt="">
+                    <span>จัดการคอร์สเรียน</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -98,7 +113,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="/home/room" >
+                <a class="nav-link" href="/home/room">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                     <img src="/img/icon6.png" width="15" height="15" class="logo" alt="">
                     <span>เพิ่มห้อง</span></a>
@@ -153,35 +168,33 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    ปีการศึกษา
+                    <%= term.year %> เทอม
+                        <%= term.term %>
+                            <!-- Sidebar Toggle (Topbar) -->
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/home" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= login %></span>
-                                <img class="img-profile rounded-circle" src="/img/iconuser.png" width="15" height="15"
-                                    class="logo" alt="">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <div class="dropdown-item"></div>
-                                <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    ออกจากระบบ
-                                </a>
-                            </div>
-                        </li>
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle" href="/home" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= login %></span>
+                                        <img class="img-profile rounded-circle" src="/img/iconuser.png" width="15" height="15" class="logo" alt="">
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                        <div class="dropdown-item"></div>
+                                        <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> ออกจากระบบ
+                                        </a>
+                                    </div>
+                                </li>
 
-                    </ul>
+                            </ul>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -199,7 +212,7 @@
                                     <p style="margin-top: 0.15vw;">
                                         <label class="label">รหัสตึก :</label>
                                     </p>
-                                    
+
 
 
 
@@ -209,20 +222,18 @@
                                     <div class="field">
                                         <form id="addBuild" method="POST" action="/home/build/create">
                                             <p class="control">
-                                                <input name="buildID" class="input" type="text" placeholder=""
-                                                    style="width:50%"> <span id="txtBuildID" style="color: red"></span>
+                                                <input name="buildID" class="input" type="text" placeholder="" style="width:50%"> <span id="txtBuildID" style="color: red"></span>
                                             </p>
-                                            <span id="txtAlertBuildID" style="color: red"> <% if(err) { %>* ไม่สามารถเพิ่มตึกได้ เนื่องจากรหัสตึกซ้ำ<% } %></span> 
+                                            <span id="txtAlertBuildID" style="color: red"> <% if(err) { %>* ไม่สามารถเพิ่มตึกได้ เนื่องจากรหัสตึกซ้ำ<% } %></span>
                                     </div>
                                 </div>
                             </div>
 
                             <hr>
-                            
+
 
                             <p>
-                                <button type="button" onclick="checkValue()" class="button is-success"
-                                    style="margin-top: 1.5vw; margin-left: 60%; color: white;">เพิ่มตึก</button>
+                                <button type="button" onclick="checkValue()" class="button is-success" style="margin-top: 1.5vw; margin-left: 60%; color: white;">เพิ่มตึก</button>
                             </p>
                             </form>
                         </div>
@@ -256,8 +267,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

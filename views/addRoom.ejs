@@ -15,9 +15,7 @@
 
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -43,7 +41,24 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">OOAD</div>
             </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
+            <li class="nav-item">
+                <a class="nav-link" href="/home/term">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <img src="/img/icon2.png" width="15" height="15" class="logo" alt="">
+                    <span>จัดการปีการศึกษา</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/home/course">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <img src="/img/icon1.png" width="15" height="15" class="logo" alt="">
+                    <span>จัดการคอร์สเรียน</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -153,35 +168,33 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    ปีการศึกษา
+                    <%= term.year %> เทอม
+                        <%= term.term %>
+                            <!-- Sidebar Toggle (Topbar) -->
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/home" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= login %></span>
-                                <img class="img-profile rounded-circle" src="/img/iconuser.png" width="15" height="15"
-                                    class="logo" alt="">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <div class="dropdown-item"></div>
-                                <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    ออกจากระบบ
-                                </a>
-                            </div>
-                        </li>
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle" href="/home" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= login %></span>
+                                        <img class="img-profile rounded-circle" src="/img/iconuser.png" width="15" height="15" class="logo" alt="">
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                        <div class="dropdown-item"></div>
+                                        <a class="dropdown-item" href="/home" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> ออกจากระบบ
+                                        </a>
+                                    </div>
+                                </li>
 
-                    </ul>
+                            </ul>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -213,10 +226,9 @@
                                                     </option>
                                                     <% } %>
                                                 </select>
-                                            </div> <span style="color: red" id="txtBuildID"></span><br><a
-                                                href="/home/room/createAddMoreRoom">เพิ่มจำนวนห้อง</a>
+                                            </div> <span style="color: red" id="txtBuildID"></span><br><a href="/home/room/createAddMoreRoom">เพิ่มจำนวนห้อง</a>
                                             <% if(addRoom>0) { %><a href="/home/room/createAddMoreRoomx">ลดจำนวนห้อง</a>
-                                            <% } %>
+                                                <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -244,9 +256,7 @@
                                         <tbody>
                                             <tr>
                                                 <td style="text-align: center">
-                                                    <input name="roomID" class="input" type="text"
-                                                        placeholder="รหัสห้อง" style="width:70%" value="" onkeyup="checkRoomID()"><span
-                                                        name="txtroomID" style="color: red"></span>
+                                                    <input name="roomID" class="input" type="text" placeholder="รหัสห้อง" style="width:70%" value="" onkeyup="checkRoomID()"><span name="txtroomID" style="color: red"></span>
                                                 </td>
                                                 <td style="text-align: center">
                                                     <div class="select" style="width:90%">
@@ -259,62 +269,53 @@
                                                     </div> <span name="txtType" style="color: red"></span>
                                                 </td>
                                                 <td style="text-align: center">
-                                                    <input name="maxStudent" class="input" type="number"
-                                                        placeholder="จำนวนคน" style="width:70%" value=""><span
-                                                        name="txtMaxStudent" style="color: red"></span>
+                                                    <input name="maxStudent" class="input" type="number" placeholder="จำนวนคน" style="width:70%" value=""><span name="txtMaxStudent" style="color: red"></span>
                                                 </td>
                                                 <td style="text-align: center">
-                                                    <input name="status" class="input" type="text" style="width:70%"
-                                                        value="ว่าง" readonly>
+                                                    <input name="status" class="input" type="text" style="width:70%" value="ว่าง" readonly>
                                                 </td>
                                             </tr>
                                             <% for(var i=0; i < addRoom; i++) { %>
-                                            <tr>
-                                                <td style="text-align: center">
-                                                    <input name="roomID" class="input" type="text"
-                                                        placeholder="รหัสห้อง" style="width:70%" value="" onkeyup="checkRoomID()"><span
-                                                        name="txtroomID" style="color: red" ></span>
-                                                </td>
-                                                <td style="text-align: center">
-                                                    <div class="select" style="width:90%">
-                                                        <select name="type">
+                                                <tr>
+                                                    <td style="text-align: center">
+                                                        <input name="roomID" class="input" type="text" placeholder="รหัสห้อง" style="width:70%" value="" onkeyup="checkRoomID()"><span name="txtroomID" style="color: red"></span>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <div class="select" style="width:90%">
+                                                            <select name="type">
                                                             <option value="" hidden>เลือก....</option>
                                                             <option value="ห้องเรียนปกติ">ห้องเรียนปกติ</option>
                                                             <option value="ห้องเรียนใหญ่">ห้องเรียนใหญ่</option>
                                                             <option value="ห้องแลป">ห้องแลป</option>
                                                         </select>
-                                                    </div> <span name="txtType" style="color: red"></span>
-                                                </td>
-                                                <td style="text-align: center">
-                                                    <input name="maxStudent" class="input" type="number"
-                                                        placeholder="จำนวนคน" style="width:70%" value=""><span
-                                                        name="txtMaxStudent" style="color: red"></span>
-                                                </td>
-                                                <td style="text-align: center">
-                                                    <input name="status" class="input" type="text" style="width:70%"
-                                                        value="ว่าง" readonly>
-                                                </td>
-                                            </tr>
-                                            <% } %>
+                                                        </div> <span name="txtType" style="color: red"></span>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <input name="maxStudent" class="input" type="number" placeholder="จำนวนคน" style="width:70%" value=""><span name="txtMaxStudent" style="color: red"></span>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <input name="status" class="input" type="text" style="width:70%" value="ว่าง" readonly>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
                                         </tbody>
                                     </table>
                                 </div>
                             </form>
                             <div style="margin-left: 10%">
                                 <span style="color: red">* </span> หมายถึง กรุณากรอกข้อความ<br>
-                                <input class="input" type="text" style="width:5%; border-color: red;" value="" readonly> หมายถึง รหัสตึกซ้ำ<br>
+                                <input class="input" type="text" style="width:5%; border-color: red;" value="" readonly> หมายถึง รหัสห้องซ้ำ<br>
                             </div>
                             <p>
-                                 
-                                <button type="button" onclick="checkValue()" class="button is-success"
-                                    style="margin-top: 1.5vw; margin-left: 60%; color: white;">เพิ่มห้อง</button>
+
+                                <button type="button" onclick="checkValue()" class="button is-success" style="margin-top: 1.5vw; margin-left: 60%; color: white;">เพิ่มห้อง</button>
                             </p>
                             <span id="txtAlertAddRoom" style="margin-left: 10%; color: red;"><% if(err){ %>* ไม่สามารถเพิ่มห้องได้เนื่องจาก รหัสห้องซ้ำในระบบ : <%= dup %><% } %></span>
                             </form>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -342,8 +343,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
